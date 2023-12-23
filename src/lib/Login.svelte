@@ -12,7 +12,7 @@
   async function login() {
     try {
         await client.collection('users').authWithPassword(username, password)
-        console.log("Authenticated")
+        console.log("Authenticated.")
         location.reload()
     }
     catch (err) {
