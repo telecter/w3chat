@@ -61,7 +61,12 @@
     }
     .container {
         margin: auto;
-        width: 100%;
+        width: 30%;
+    }
+    @media only screen and (max-width: 600px) {
+        .container {
+            width: 90%;
+        }
     }
     #error-text {
         color: rgb(228, 67, 67);
