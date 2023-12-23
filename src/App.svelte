@@ -1,0 +1,12 @@
+<script lang="ts">
+  import Login from './lib/Login.svelte'
+  import Messages from './lib/Messages.svelte';
+  import client from './lib/pocketbase'
+</script>
+
+<main>
+  {#if client.authStore.isValid}
+    <Messages />
+  {/if}
+  <Login />
+</main>
