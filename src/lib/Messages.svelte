@@ -49,7 +49,7 @@
 <style>
   #messagebox {
     overflow: auto;
-    max-height: 65vh;
+    height: 65vh;
     width: auto;
   }
   .container {

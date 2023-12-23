@@ -3,7 +3,7 @@
 
   let username: string;
   let password: string;
-  let errorText = ""
+  let error = "hidden"
 
   function logout() {
     client.authStore.clear()
@@ -16,7 +16,7 @@
         location.reload()
     }
     catch (err) {
-        errorText = "An error occurred."
+        error = "visible"
     }
   }
 
@@ -32,7 +32,7 @@
         location.reload()
     }
     catch (err) {
-        errorText = "An error occurred."
+        error = "visible"
     }
   }
 </script>
@@ -46,7 +46,7 @@
     <form on:submit|preventDefault>
         <input type="text" placeholder="Username" bind:value={username}>
         <input type="password" placeholder="Password" bind:value={password}>
-        <p id="error-text">{errorText}</p>
+        <p id="error-text" style="visibility:{error}">Authentication failed.</p>
         <button on:click={login}>Login</button>
         <button on:click={signup}>Sign Up</button>
       </form>
