@@ -1,10 +1,11 @@
 <script lang="ts">
-  import { onDestroy, onMount } from "svelte";
+  import { onDestroy, onMount, tick } from "svelte";
   import client from './pocketbase'
 
   let messages: any = []
   let unsubscribe: () => void;
   let newMessage: string
+  let messagebox: Element;
 
   onMount(async () => {
     const records = await client.collection('messages').getList(1, 50, { expand: 'user' })
@@ -14,6 +15,8 @@
         const user = await client.collection('users').getOne(record.user)
         record.expand = { user }
         messages = [...messages, record]
+        await tick()
+        messagebox.lastElementChild?.scrollIntoView()
       }
     })
   })
@@ -31,7 +34,7 @@
 </script>
 
 <div class="container">
-<div id="messagebox">
+<div id="messagebox" bind:this={messagebox}>
   {#each messages as message}
     <p><b>{message.expand?.user?.username}: </b>{message.content}</p>
   {/each}
