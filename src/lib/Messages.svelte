@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onDestroy, onMount, tick } from "svelte";
   import client from './pocketbase'
+  import Login from './Login.svelte'
 
   let messages: any = []
   let unsubscribe: () => void;
@@ -33,16 +34,15 @@
 
 </script>
 
-<div class="w-auto h-100">
-  <div class="specific-h-500 overflow-y-auto mb-2" id="messagebox" bind:this={messagebox}>
-    {#each messages as message}
-      <p><b>{message.expand?.user?.username}: </b>{message.content}</p>
-    {/each}
-  </div>
-  <form on:submit|preventDefault={send}>
-    <div class="mb-1">
-      <input type="text" placeholder="Message" class="form-control" bind:value={newMessage}>
-    </div>
-    <button class="btn btn-primary w-100">Send</button>
-  </form>
+<div class="overflow-y-auto mb-2" id="messagebox" bind:this={messagebox}>
+  {#each messages as message}
+    <p><b>{message.expand?.user?.username}: </b>{message.content}</p>
+  {/each}
 </div>
+<form on:submit|preventDefault={send} class="sticky-bottom">
+  <div class="mb-1">
+    <input type="text" placeholder="Message" class="form-control" bind:value={newMessage}>
+  </div>
+  <button class="btn btn-primary w-100">Send</button>
+</form>
+<Login />

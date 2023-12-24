@@ -7,6 +7,7 @@
 <main class="container mt-5">
   {#if client.authStore.isValid}
     <Messages />
+  {:else}
+    <Login />
   {/if}
-  <Login />
 </main>
