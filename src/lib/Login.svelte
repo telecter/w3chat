@@ -40,35 +40,27 @@
 {#if client.authStore.isValid}
   <p>Logged in as <b>{client.authStore.model?.username}</b> • <a href="/" on:click={logout}>Logout</a></p>
 {:else}
-  <div class="container">
-    <h1>W<sup>3</sup> Chat</h1>
-    <p>Please login or sign up to continue.</p>
+  <section class="mx-md-auto w-md-25">
+    <header>
+      <h1>W<sup>3</sup> Chat</h1>
+      <p class="text-body-secondary">Please login or sign up to continue.</p>
+    </header>
     <form on:submit|preventDefault>
-        <input type="text" placeholder="Username" bind:value={username}>
-        <input type="password" placeholder="Password" bind:value={password}>
-        <p id="error-text" style="visibility:{error}">Authentication failed.</p>
-        <button on:click={login}>Login</button>
-        <button on:click={signup}>Sign Up</button>
-      </form>
-  </div>
+      <label for="username" class="form-label">Username</label>
+      <input type="text" placeholder="idiot123" id="username" class="form-control" bind:value={username}>
+      <label for="password" class="form-label">Password</label>
+      <input type="password" placeholder="verysecurepassword25" id="password" class="form-control" bind:value={password}>
+      <div class="mt-4 mb-2 pb-3 border-bottom">
+        <button on:click={login} class="btn btn-primary">Login</button>
+        <button on:click={signup} class="btn btn-secondary">Sign Up</button>
+      </div>
+      <div class="text-center text-body-secondary">
+        Forgot your password? <span class="text-danger">Too bad.</span>
+      </div>
+    </form>
+      <div class="alert alert-danger mt-5" role="alert" style="visibility: {error}">
+        <h5 class="alert-heading">Authentication failed.</h5>
+        And I have absolutely no idea why.
+      </div>
+    </section>
 {/if}
-
-
-<style>
-    input {
-      display: block;
-      width: 90%;
-    }
-    .container {
-        margin: auto;
-        width: 30%;
-    }
-    @media only screen and (max-width: 600px) {
-        .container {
-            width: 90%;
-        }
-    }
-    #error-text {
-        color: rgb(228, 67, 67);
-    }
-</style>

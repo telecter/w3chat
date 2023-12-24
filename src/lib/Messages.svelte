@@ -33,29 +33,16 @@
 
 </script>
 
-<div class="container">
-<div id="messagebox" bind:this={messagebox}>
-  {#each messages as message}
-    <p><b>{message.expand?.user?.username}: </b>{message.content}</p>
-  {/each}
+<div class="w-auto h-100">
+  <div class="specific-h-500 overflow-y-auto mb-2" id="messagebox" bind:this={messagebox}>
+    {#each messages as message}
+      <p><b>{message.expand?.user?.username}: </b>{message.content}</p>
+    {/each}
+  </div>
+  <form on:submit|preventDefault={send}>
+    <div class="mb-1">
+      <input type="text" placeholder="Message" class="form-control" bind:value={newMessage}>
+    </div>
+    <button class="btn btn-primary w-100">Send</button>
+  </form>
 </div>
-<form on:submit|preventDefault={send}>
-  <input type="text" placeholder="Message" bind:value={newMessage}>
-  <button>Send</button>
-</form>
-</div>
-
-
-<style>
-  #messagebox {
-    overflow: auto;
-    height: 65vh;
-    width: auto;
-  }
-  .container {
-    width: auto;
-  }
-  input {
-    width: 90%;
-  }
-</style>
