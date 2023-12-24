@@ -34,15 +34,17 @@
 
 </script>
 
-<div class="overflow-y-auto mb-2" id="messagebox" bind:this={messagebox}>
+<div class="overflow-y-scroll specific-h-500 mb-2" id="messagebox" bind:this={messagebox}>
   {#each messages as message}
     <p><b>{message.expand?.user?.username}: </b>{message.content}</p>
   {/each}
 </div>
-<form on:submit|preventDefault={send} class="sticky-bottom">
-  <div class="mb-1">
-    <input type="text" placeholder="Message" class="form-control" bind:value={newMessage}>
-  </div>
-  <button class="btn btn-primary w-100">Send</button>
-</form>
-<Login />
+<div>
+  <form on:submit|preventDefault={send}>
+    <div class="mb-1">
+      <input type="text" placeholder="Message" class="form-control" bind:value={newMessage}>
+    </div>
+    <button class="btn btn-primary w-100">Send</button>
+  </form>
+  <Login />
+</div> 
